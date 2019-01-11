@@ -6,10 +6,6 @@ from blockchain_parser.blockchain import Blockchain
 # containing the .blk files created by bitcoind
 blockchain = Blockchain(sys.argv[1])
 
-# To get the blocks ordered by height, you need to provide the path of the
-# `index` directory (LevelDB index) being maintained by bitcoind. It contains
-# .ldb files and is present inside the `blocks` directory
-
 
 def is_mutual_closing(t):
     if not (t.version == 2 and t.locktime == 0):
