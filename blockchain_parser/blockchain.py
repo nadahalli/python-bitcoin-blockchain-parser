@@ -13,6 +13,7 @@ import os
 import mmap
 import struct
 import pickle
+import random
 import stat
 import plyvel
 
@@ -35,7 +36,7 @@ def get_files(path):
     files = os.listdir(path)
     files = [f for f in files if f.startswith("blk") and f.endswith(".dat")]
     files = map(lambda x: os.path.join(path, x), files)
-    return sorted(files)
+    return sorted(files, key = lambda _: random.random())
 
 
 def get_blocks(blockfile):
