@@ -10,12 +10,17 @@ dataset = read_csv('./t.csv', delimiter = ';', usecols = lambda column : column 
 
 array = dataset.values
 
-X = preprocessing.scale(array[:,0:7])
+#X = preprocessing.scale(array[:,0:6])
+X = array[:,0:6]
 
-print(X)
+for row in X:
+    print(row)
+    break
 
-lab_enc = preprocessing.LabelEncoder()
-Y = lab_enc.fit_transform(array[:,8])
+Y = array[:,6]
+for row in Y:
+    print(row)
+    break
 
 X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=0.20, random_state=1)
 
@@ -23,10 +28,6 @@ model = LogisticRegression(solver='liblinear')
 model.fit(X_train, Y_train)
 
 Y_predict = model.predict(X_validation)
-
-print(X_validation)
-print(Y_predict)
-print(Y_validation)
 
 print('Precision: {0:0.2f}'.format(
       precision_score(Y_validation, Y_predict, average = 'micro')))
