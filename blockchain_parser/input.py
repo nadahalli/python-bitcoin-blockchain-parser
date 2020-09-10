@@ -73,6 +73,14 @@ class Input(object):
         return self._script
 
     @property
+    def rawscript(self):
+        """Returns a Script object representing the redeem script"""
+        if self._script is None:
+            end = self._script_start + self._script_length
+            self._script = self.hex[self._script_start:end]
+        return self._script
+
+    @property
     def witnesses(self):
         """Return a list of witness data attached to this input, empty if non segwit"""
         return self._witnesses
